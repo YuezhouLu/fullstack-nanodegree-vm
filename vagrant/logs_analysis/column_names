@@ -1,0 +1,29 @@
+articles:
+	column name	type
+
+	author          integer [FK]
+	title	        text
+	slug            text
+	lead            text
+	body            text
+	time            timestamp with time zone
+	id	        integer [PK]
+
+
+authors:
+	column name	type
+
+	name		text
+	bio             text
+	id              integer [PK]
+
+
+log:
+	column name	type
+
+	path	        text
+	ip              inet
+	method          text
+	status          text
+	time            timestamp with time zone
+	id              integer [PK]

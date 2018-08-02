@@ -1,0 +1,33 @@
+     Report Name: User Request Log Summary
+          Author: The Greatest Fullstack Dev JC
+  Time Generated: Thu Aug  2 04:53:34 2018
+
+-----------------------------  Report Contents  ------------------------------
+
+                  Top Articles               
+
+          Article Title |   Reviewed Number  
+---------------------------------------------
+      candidate is jerk |    338647 views    
+     bears love berries |    253801 views    
+        bad things gone |    170098 views    
+
+
+                        Top Authors                    
+
+           Authors Name | Ranking |   Reviewed Number  
+-------------------------------------------------------
+        Ursula La Multa |    1    |    507594 views    
+ Rudolf von Treppenwitz |    2    |    423457 views    
+  Anonymous Contributor |    3    |    170098 views    
+         Markoff Chaney |    4    |     84557 views    
+
+
+        Abnormal Error Day         
+
+         Date |  Error Percentage  
+-----------------------------------
+   2016-07-17 |    2.2626862468%   
+
+______________________________________________________________________________
+                                Format by J.C.                                
