@@ -25,6 +25,6 @@ def add_post(content):
   # POSTS.append((content, datetime.datetime.now()))
   db = psycopg2.connect(database = DBNAME)
   c = db.cursor()
-  c.execute("insert into posts values (%s)", (bleach.clean(content),)) # we put a Python tuple parameter here, therefore with a comma
+  c.execute("insert into posts values (%s)", (bleach.clean(content),)) # we put a Python tuple parameter here, therefore with a comma, second argument time is the current time which will be automatically generated
   db.commit()
   db.close()
