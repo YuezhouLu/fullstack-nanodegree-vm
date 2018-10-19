@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id = "new-model">
+        <div class = "new-model-title-container">
+            <h1>A New Model</h1>
+        </div>
+        <form action = "{{ url_for('newModel', maker_id = maker_id) }}", method = 'POST'>
+            <div class = "new-model-name-container">
+                <p class = "new-model-name">Model Name:</p>
+                <input type = 'text' size = '20' name = 'model_name' placeholder= 'Give it a name'>
+            </div>
+            <div class = "new-model-description-container">
+                <p class = "new-model-description">Model Description:</p>
+                <input type = 'text' size = '50' name = 'model_description' placeholder = 'Say something about this car'>
+            </div>
+            <div class = "new-model-photo-container">
+                <p class = "new-model-photo">Model Photo:</p>
+                <input type = 'url' maxlength = '250' name = 'model_photo' placeholder = 'http://www.example.com'>
+            </div>  
+            <input type = 'submit' value = 'Create'>
+            <a href = "{{ url_for('showModels', maker_id = maker_id) }}">Cancel</a>
+        </form>
+    </section>
+{% endblock %}

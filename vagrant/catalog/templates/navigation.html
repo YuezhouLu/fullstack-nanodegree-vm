@@ -1,0 +1,32 @@
+<section id = "maker-list">
+    <h1>Makers</h1>
+
+    {% with flashMessages = get_flashed_messages(category_filter = ["maker-related"]) %}
+        {% if flashMessages %}
+            <div class = "maker-flash-messages-container">
+                <ul class = "maker-flash-messages">
+                {% for flashMessage in flashMessages %}
+                    <li>{{ flashMessage }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% for maker in makers %}
+    <div class = "maker">
+        <a href = "{{ url_for('showModels', maker_id = maker.id) }}">
+            <div>
+                <div class = "brand-container">
+                    <span class = "brands">{{ maker.name }}</span>
+                </div><div class = "logo-container"> <!-- In order to get rid of the anonymous box -->
+                    <img class = "logos" src="{{ maker.logo }}" alt="{{ maker.name }}">
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+    <div>
+        <p class = "new-maker-button"><a href = "{{ url_for('newMaker') }}">Add a new maker</a></p>
+    </div>
+</section>

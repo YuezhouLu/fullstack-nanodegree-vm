@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id = "delete-model">
+        <div class = "delete-model-title-container">
+            <h1>Not satisfied with {{ deleted_model.name }}???</h1>
+        </div>
+        <div class = "delete-form-container">
+                <form action = "{{ url_for('deleteModel', maker_id = maker_id, model_id = model_id) }}", method = 'POST'>
+                    <input type = 'submit' value = 'Delete'>
+                    <a href = "{{ url_for('showModels', maker_id = maker_id) }}">I regret!</a>
+            </form>
+        </div>
+    </section>
+{% endblock %}

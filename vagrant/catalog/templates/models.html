@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include "header.html" %}
+    {% include "navigation.html" %}
+    <section id = "model-list">
+        <div class = "model-maker-info-container">
+            <h1>{{ maker.name }}</h1>
+            <h3 class = "maker-owner">-- Owned by {{ creator.name }}</h3>
+            <div class = "new-model-container">
+                <a href = "{{ url_for('newModel', maker_id = maker.id) }}"><p class = "new-model">Create a New Model</p></a>
+            </div>
+            <div class = "model-maker-edit-delete-container">
+                <a href = "{{ url_for('editMaker', maker_id = maker.id) }}"><p class = "edit-maker-button">Edit Maker Information</p></a>
+                <a href = "{{ url_for('deleteMaker', maker_id = maker.id) }}"><p class = "delete-maker-button">Delete This Maker</p></a>
+            </div>
+        </div>
+
+        {% with flashMessages = get_flashed_messages(category_filter = ["model-related"]) %}
+            {% if flashMessages %}
+                <div class = "model-flash-messages-container">
+                    <ul class = "model-flash-messages">
+                    {% for flashMessage in flashMessages %}
+                        <li>{{ flashMessage }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% for model in models %}
+        <div class = "model">
+            <img class = "model-photo" src="{{ model.photo }}" alt="{{ model.name }}">
+            <div class = "model-info-container">
+                <div class = "model-edit-delete-container">
+                    <a href = "{{ url_for('editModel', maker_id = maker.id, model_id = model.id) }}"><p class = "edit-model-button">Edit Model Information</p></a>
+                    <a href = "{{ url_for('deleteModel', maker_id = maker.id, model_id = model.id) }}"><p class = "delete-model-button">Delete This Model</p></a>
+                </div>
+                <div class = "model-name-description-container">
+                    <p class = "model-name">{{ model.name }}</p>
+                    <p class = "model-description">{{ model.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

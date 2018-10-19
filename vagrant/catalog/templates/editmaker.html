@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id = "edit-maker">
+        <div class = "edit-maker-title-container">
+            <h1>Edit Maker -- {{ edited_maker.name }}</h1>
+        </div>
+        <form action = "{{ url_for('editMaker', maker_id = edited_maker.id) }}", method = 'POST'>
+            <div class = "edit-maker-rename-brand-container">
+                <p class = "edit-maker-rename-brand">Rename Brand:</p>
+                <input type = 'text' size = '20' name = 'edited_maker_name' placeholder= '{{ edited_maker.name }}'>
+            </div>
+            <div class = "edit-maker-rebuild-logo-container">
+                <p class = "edit-maker-rebuild-logo">Rebuild Logo:</p>
+                <input type = 'url' maxlength = '250' name = 'edited_maker_logo' placeholder = 'http://www.example.com.jpg'>
+            </div>
+            <input type = 'submit' value = 'Edit'>
+            <a href = "{{ url_for('goHome') }}">Cancel</a>
+        </form>
+    </section>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include "header.html" %}
+    {% include "navigation.html" %}
+    <section id = "model-list">
+        <div class = "model-maker-info-container">
+            <h1>{{ maker.name }}</h1>
+            <h3 class = "maker-owner">-- Owned by {{ creator.name }}</h3>
+        </div>
+
+        {% for model in models %}
+        <div class = "model">
+            <img class = "model-photo" src="{{ model.photo }}" alt="{{ model.name }}">
+            <div class = "public-model-info-container">
+                <div class = "public-model-name-description-container">
+                    <p class = "model-name">{{ model.name }}</p>
+                    <p class = "model-description">{{ model.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id = "new-maker">
+        <div class = "new-maker-title-container">
+            <h1>Create A New Maker!</h1>
+        </div>
+        <form action = "{{ url_for('newMaker') }}", method = 'POST'>
+            <div class = "new-maker-brand-name-container">
+                <p class = "new-maker-brand-name" >Brand Name:</p>
+                <input type = 'text' size = '20' name = 'maker_name' placeholder= 'A Car Brand'>
+            </div>
+            <div class = "new-maker-maker-logo-container">
+                <p class = "new-maker-maker-logo">Maker Logo:</p>
+                <input type = 'url' maxlength = '250' name = 'maker_logo' placeholder = 'http://www.example.com.jpg'>
+            </div>
+            <input type = 'submit' value = 'Create!'>
+            <a href = "{{ url_for('goHome') }}">Cancel</a>
+        </form>
+    </section>
+{% endblock %}

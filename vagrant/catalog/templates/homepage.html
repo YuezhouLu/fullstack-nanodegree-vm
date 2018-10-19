@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    {% include "header.html" %}
+    {% include "navigation.html" %}
+    <section id = "new-stock">
+        {% with flashMessages = get_flashed_messages(category_filter = ["oauth2"]) %}
+            {% if flashMessages %}
+                <div class = "maker-flash-messages-container">
+                    <ul class = "maker-flash-messages">
+                    {% for flashMessage in flashMessages %}
+                        <li>{{ flashMessage }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <h1>New Stock</h1>
+        {% for model in newStock %}
+        <div class = "new-stock-model">
+            <div class = "model-photo-container">
+                <img class="img-responsive model-photo" src="{{ model.photo }}" alt="{{ model.name }}">
+            </div>
+            <div class = "model-info-container">
+                <div class = "model-name-container">
+                    <p class = "new-stock-model-maker">{{ model.maker.name }}</p>
+                    <p class = "new-stock-model-name">{{ model.name }}</p>
+                </div>
+                <div class = "model-update-time-container">
+                    <p class = "model-update-time">Last update: {{ model.date.strftime("%d-%b-%Y at %I:%M %p") }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,313 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: sans-serif;
+    background-image: url('https://images.pexels.com/photos/490411/pexels-photo-490411.jpeg?cs=srgb&dl=asphalt-blue-sky-clouds-490411.jpg&fm=jpg');
+    background-position: center top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#main {
+
+}
+
+
+
+.header {
+    width: 100%;
+    left: 15%;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    text-align: left;
+    position: fixed;
+}
+
+.go-home {
+    width: 15%;
+    display: inline-block;
+    text-align: center;
+}
+
+.go-home-photo {
+    width: 100%;
+    height: 1%;
+    box-shadow: 2px 2px grey;
+    border-radius: 3px;
+}
+
+.user-authentication{
+    width: 66.6%;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+    margin-bottom: 0.9%;
+}
+
+.auth-button {
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-color: #ffffff;
+    border-radius: 15px;
+}
+
+
+
+.logging-on {
+    margin-top: 3%;
+    text-align: center;
+}
+
+#googleSigninButton {
+    display: inline-block;
+}
+
+
+
+#maker-list {
+    font-family: sans-serif;
+    background-color: #ffffff;
+    border-radius: 15px;
+    width: 15%;
+    display: inline-block;
+    vertical-align: top;
+    position: fixed; /* use (position: fixed) will cause the div come out of the plane, and its position will no longer be respected by other divs. */
+    left: 15%; /* fixed to the viewport, with 15% distance to the left of the main div. */
+    text-align: center;
+    margin-top: 2.5%;
+}
+
+.maker{
+    margin-top: 35px;
+    margin-bottom: 35px;
+    text-align: right;
+}
+
+.brand-container {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.brands, .new-maker-button{
+    font-size: 13.5pt;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+.logo-container {
+    width: 115px;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.logos {
+    max-width: 90px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
+}
+
+
+
+#new-stock, #model-list {
+    font-family: sans-serif;
+    background-color: #ffffff;
+    width: 55%;
+    position: relative; /* Because we used (position: fixed), we need to use (position: relative) here to calculate the distance and manually respect the position of the fixed div. */
+    left: 31%; /* relative to the normal flow position, with 31% distance to the left of the main div. Tried several numbers and used 31% here for respecting the fixed list. */
+    display: inline-block;
+    text-align: center;
+    margin-top: 2.5%;
+    border-radius: 6px;
+}
+
+.new-stock-model, .model, .new-maker-title-container, .edit-maker-title-container, .delete-maker-title-container, .new-model-title-container, .edit-model-title-container, .delete-model-title-container {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.model-photo-container {
+    width: 90%;
+    display: inline-block; /* this (display: inline-block) is necessary for the parent level's (text-align: center) to work. */
+}
+
+.model-photo {
+    max-width: 800px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    box-shadow: 5px 5px grey;
+}
+
+.model-maker-info-container, .model-info-container {
+    margin-top: 15px;
+    width: 90%;
+    display: inline-block;
+}
+
+.maker-owner {
+    margin-left: 350px;
+}
+
+.public-model-info-container {
+    margin-top: 15px;
+    width: 90%;
+    display: inline-block;
+    text-align: right;
+}
+
+.model-name-container {
+    width: 400px;
+    display: inline-block;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.new-stock-model-maker {
+    font-size: 18pt;
+    font-weight: bold;
+    color: green;
+}
+
+.new-stock-model-name {
+    font-size: 14.5pt;
+    color: brown;
+    text-decoration: underline;
+}
+
+.model-update-time-container {
+    width: 400px;
+    display: inline-block;
+    text-align: right;
+}
+
+.model-update-time {
+    font-size: 12pt;
+    font-style: italic;
+    color: grey;
+}
+
+
+
+.new-model {
+    font-size: 15pt;
+    font-weight: bold;
+    font-style: italic;
+    color: orange;
+}
+
+.edit-maker-button, .delete-maker-button {
+    font-size: 13pt;
+}
+
+.new-model-container, .model-edit-delete-container {
+    width: 400px;
+    display: inline-block;
+    text-align: left;
+    vertical-align: bottom;
+}
+
+.edit-model-button, .delete-model-button {
+    font-size: 12.5pt;
+}
+
+.model-maker-edit-delete-container, .model-name-description-container {
+    width: 400px;
+    display: inline-block;
+    text-align: right;
+}
+
+.public-model-name-description-container {
+    width: 400px;
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.model-name {
+    font-size: 16.5pt;
+    font-weight: bold;
+    color: brown;
+}
+
+.model-description {
+    font-size: 12.5pt;
+    font-style: italic;
+    color: grey;
+}
+
+
+
+#new-maker, #edit-maker, #delete-maker, #new-model, #edit-model, #delete-model {
+    text-align: center;
+}
+
+.new-maker-brand-name-container, .new-maker-maker-logo-container, .edit-maker-rename-brand-container, .edit-maker-rebuild-logo-container, .new-model-name-container, .new-model-description-container, .new-model-photo-container, .edit-model-rename-container, .edit-model-description-container, .edit-model-photo-container {
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.new-maker-brand-name, .new-maker-maker-logo, .edit-maker-rename-brand, .edit-maker-rebuild-logo, .new-model-name, .new-model-description, .new-model-photo, .edit-model-rename, .edit-model-description, .edit-model-photo {
+    font-size: 18px;
+    color: white;
+}
+
+.delete-form-container {
+    margin-top: 50px;
+}
+
+
+
+.maker-flash-messages-container {
+    background-color: aquamarine;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.maker-flash-messages {
+    font-size: 17px;
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
+.model-flash-messages-container {
+    background-color: aquamarine;
+    padding-top: 10px;
+    padding-bottom: 10px; 
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.model-flash-messages {
+    font-size: 19px;
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class = "logging-on">
+
+        <div id="result"></div>
+        
+        <!-- GOOGLE PLUS SIGN IN -->
+
+        <!-- User/client sign in to Google -->
+        <div id="googleSigninButton">
+            <span class="g-signin"
+                data-scope="openid email"
+                data-clientid="736775189605-q5iekbegdardmgkufbr1rgsk8nb8sg25.apps.googleusercontent.com"
+                data-redirecturi="postmessage"
+                data-accesstype="offline"
+                data-cookiepolicy="single_host_origin"
+                data-callback="signInCallback"
+                data-approvalprompt="force"></span>
+        </div>
+        <!-- End of user/client sign in to Google -->
+
+        <!-- Google sends back the one-time-use code to the client/browser/front-end(here this HTML file) -->
+        <script>
+            function signInCallback(authResult) {
+                // authResult is the things Google sends back to the client after he signed in.
+                if (authResult['code']) {
+                    // Hide the sign-in button now that the user is authorized.
+                    $('#googleSigninButton').attr('style', 'display: none');
+                    $('#fbSigninButton').attr('style', 'display: none');
+                    
+                    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page.
+                    // Use JQuery to create an AJAX call to pass the one-time code Google gave the client onto the server.
+                    $.ajax({
+                        type: 'POST',
+                        url: '/gconnect?state={{STATE}}', // the methods under /gconnect route will deal with the one-time code.
+                        processData: false, // not to string.
+                        data: authResult['code'],
+                        contentType: 'application/octet-stream; charset=utf-8',
+                        
+                        // Codes below tell what the front-end page should show to the client after the server handles and processes the one-time-use code.
+                        // Code below handles the response from the server after the server checked everything including one-time code, the access token and user info.
+                        success: function(result) { // ths result is the final output or responses returned from the server (gconnect route).
+                            // Handle or verify the server response if necessary.
+                            if (result) {
+                                $('#result').html('Login Successful!</br>'+ result + '</br></br></br>Redirecting...')
+                                setTimeout(function() {
+                                    window.location.href = "/garage";
+                                }, 2500);
+                            // There maybe error during user sign into Google such as wrong password etc.
+                            } else if (authResult['error']) {
+                                console.log('There was an error: ' + authResult['error']);
+                            } else {
+                                $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                            }
+                        }
+                    }); 
+                }
+            }
+        </script>
+        <!-- END GOOGLE PLUS SIGN IN -->
+
+
+        <br><br><br>
+
+
+        <!-- FACEBOOK SIGN IN -->
+
+        <!-- User/client sign in to Facebook -->
+        <div id="fb-root"></div>
+        <div id="fbSigninButton">
+        <fb:login-button
+            scope="public_profile,email"
+            onlogin="sendTokenToServer();"
+            data-width="100"
+            data-max-rows="1"
+            data-size="large"
+            data-button-type="login_with"
+            data-show-faces="false"
+            data-auto-logout-link="false"
+            data-use-continue-as="false">
+        <a href='javascript:sendTokenToServer()'>Log in with Facebook</a>
+        </fb:login-button>
+        </div>
+        <!-- End of User/client sign in to Facebook -->
+
+        <script>
+            // Load the Facebook JavaScript SDK.
+            window.fbAsyncInit = function() {
+                FB.init({
+                appId      : '579671219130233',
+                cookie     : true,  // Enable cookies to allow the server to access the session.
+                xfbml      : true,  // Parse social plugins on this page.
+                version    : 'v3.1' // Use version 3.1.
+                });
+                
+                FB.AppEvents.logPageView();
+                
+            };
+            
+            // Load the SDK asynchronously.
+            // This function calls the SDK asynchronously so that the rest of the page can load without it.
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            // Here we run a very simple test of the Graph API after login is successful.
+            // See statusChangeCallback() for when this call is made.
+            function sendTokenToServer() {
+                var access_token = FB.getAuthResponse()['accessToken']; // Retrieves short-lived access token.
+                console.log(access_token);
+                console.log('Welcome!  Fetching your information.... ');
+                FB.api('/me', function(response) { // Showing how we can use the Facebook SDK to also make API calls.
+                    console.log('Successful login for: ' + response.name);
+
+                    // Hide the sign-in button now that the user is authorized.
+                    $('#googleSigninButton').attr('style', 'display: none');
+                    $('#fbSigninButton').attr('style', 'display: none');
+                
+                    $.ajax({
+                        type: 'POST',
+                        url: '/fbconnect?state={{STATE}}',
+                        processData: false,
+                        data: access_token,
+                        contentType: 'application/octet-stream; charset=utf-8',
+
+                        success: function(result) {
+                            // Handle or verify the server response if necessary.
+                            if (result) {
+                                $('#result').html('Login Successful!</br>'+ result + '</br></br></br>Redirecting...')
+                                setTimeout(function() {
+                                    window.location.href = "/garage";
+                                }, 2500);
+                            } else {
+                                $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                            }
+                        }       
+                    });
+                });
+            }
+        </script>
+        <!-- End of user/client sign in to Facebook -->
+    </div>
+{% endblock %}

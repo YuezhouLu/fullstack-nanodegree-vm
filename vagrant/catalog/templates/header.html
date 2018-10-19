@@ -1,0 +1,15 @@
+<div class="header">
+	<div class="go-home">
+		<a href="{{url_for('goHome')}}">
+			<img class = "go-home-photo" src = "https://dummyimage.com/900x100/e68743/ffffff.jpg&text=JC's+Garage" alt = "Home">
+		</a>
+	</div>
+
+	<div class="user-authentication">
+		{% if 'username' not in session %}
+		<a href = "{{url_for('showLogin')}}"><span class = "auth-button">Click Here to Log on</span></a>
+		{% else %}
+		<a href = "{{url_for('disconnect')}}"><span class = "auth-button">Log out</span></a>
+		{% endif %}
+	</div>
+</div>
